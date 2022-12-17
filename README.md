@@ -1,3 +1,7 @@
+### Project Movies-explorer-frontend
+### figma https://disk.yandex.ru/d/XYQ3gTToZ1zMFg
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
