@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import './Navigation.css';
 import account from "../../images/account.png";
-import Hamburger from 'hamburger-react'
 import { Link } from "react-router-dom";
 
 
 
 function Navigation(props) {
-    const [isOpen, setOpen] = useState(false)
     const [isOpenBurger, setOpenBurger] = useState(false)
 
     function handleOpenMenu() {
@@ -31,12 +29,14 @@ function Navigation(props) {
 
         <div className='navigation__wrapper'>
             <div className='navigation__link'>
-                <Link  className='navigation__films' to="/movies">Фильмы</Link>
-                <Link  className='navigation__saved-films' to="/saved-movies">Сохранённые фильмы</Link>
+                <Link className='navigation__films' to="/movies">Фильмы</Link>
+                <Link className='navigation__saved-films' to="/saved-movies">Сохранённые фильмы</Link>
             </div>
             <Link to='/profile' className='navigation__account'><img src={account} alt="Символ человека" /> Аккаунт</Link>
         </div>
-        <div onClick={handleOpenMenu} className='navigation__burger'><Hamburger toggled={isOpen} toggle={setOpen} /></div>
+        <div onClick={handleOpenMenu} className='navigation__burgerbtn'>
+            <div className={`navigation__burger ${isOpenBurger && 'navigation__burger_active'}`} ></div>
+        </div>
         <ul className={`navigation__menu ${isOpenBurger && 'navigation__menu_active'}`} >
             <li className='navigation__nav'><Link className='navigation__burger-link' to="/" >Главная</Link></li>
             <li className='navigation__nav'><Link className='navigation__burger-link' to="/movies" >Фильмы</Link></li>

@@ -9,6 +9,83 @@
     justify-content: space-between;
 }
 
+.navigation__burger {
+    background: currentcolor;
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    top: 3px;
+
+}
+
+.navigation__burger::before {
+    position: absolute;
+    content: '';
+    background: currentcolor;
+    height: 3px;
+    width: 100%;
+    top: 35px;
+
+
+}
+
+.navigation__burger::after {
+    position: absolute;
+    content: '';
+    background: currentcolor;
+    height: 3px;
+    width: 100%;
+    top: 18px;
+
+}
+
+
+.navigation__burger_active::before {
+    transform: rotate(91deg) translate(-35.07px, -0.07000000000000028px);
+}
+
+.navigation__burger_active::after {
+    transform: scaleX(0);
+}
+
+.navigation__burger_active {
+    transform: rotate(45deg) translate(12.93px, 6.93px);
+}
+
+
+/* div  {
+
+} */
+
+
+/* .navigation__burger {
+    background: currentcolor;
+    height: 3px;
+    left: 8px;
+    position: absolute;
+    width: 32px;
+    top: 10px;
+    transition: all 0.4s cubic-bezier(0, 0, 0, 1) 0s;
+    transform: none;
+} */
+
+/* div .navigation__burger_active::after {
+    transform: scaleX(0);
+
+} */
+
+/* .navigation__burger::after {
+    content: '';
+    background: currentcolor;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 32px;
+    top: 24px;
+    transition: all 0.4s cubic-bezier(0, 0, 0, 1) 0s;
+    transform: none;
+} */
+
 .navigation__btn {
     display: flex;
     align-items: center;
@@ -52,8 +129,9 @@
 }
 
 
-.navigation__burger {
+.navigation__burgerbtn {
     display: none;
+    position: relative;
 }
 
 
@@ -90,9 +168,12 @@
 
 }
 
-.navigation__burger {
+.navigation__burgerbtn {
     display: none;
     z-index: 9999;
+    margin-left: auto;
+    position: relative;
+    cursor: pointer;
 }
 
 .navigation__menu {
@@ -139,7 +220,7 @@
 
     }
 
-    .navigation__menu_active .navigation__burger {
+    .navigation__menu_active .navigation__burgerbtn {
         position: fixed;
         width: 100vw;
 
@@ -172,10 +253,10 @@
         border: none;
     }
 
-    .navigation__burger {
-        width: auto;
+    .navigation__burgerbtn {
+        width: 48px;
         display: block;
-        margin-left: auto;
+
     }
 
     .navigation__signup {
