@@ -1,0 +1,133 @@
+.profile {
+    background-color: #202020;
+    width: 1280px;
+}
+
+.profile__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    margin: 74px 0 123px 0;
+}
+
+.profile__name {
+    display: flex;
+    width: 410px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #424242;
+    ;
+}
+
+.profile__change {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0;
+}
+
+.profile__change-name {
+    padding: 0;
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0;
+    text-align: right;
+    background-color: inherit;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+.profile__email {
+    display: flex;
+    width: 410px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-top: 17px;
+}
+
+.profile__change-email {
+    padding: 0;
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0;
+    text-align: right;
+    background-color: inherit;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+.profile__edit {
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    margin: 220px 0 17px 0;
+    cursor: pointer;
+}
+
+.profile__sign-out {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #EE3465;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    width: 410px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+@media screen and (max-width: 769px) {
+
+
+    .profile__title {
+        margin: 236px 0 96px 0;
+    }
+
+    .profile__edit {
+        margin: 210px 0 17px 0;
+    }
+
+    .profile__sign-out {
+        margin-bottom: 269px;
+    }
+
+
+}
+
+@media screen and (max-width: 450px) {
+
+    .profile__title {
+        width: 210px;
+        margin: 70px auto 80px auto;
+    }
+
+    .profile__name {
+        width: 260px;
+    }
+
+
+    .profile__email {
+        width: 260px;
+    }
+
+    .profile__edit {
+        font-size: 12px;
+        line-height: 15px;
+        margin: 379px 0 17px 0;
+    }
+
+    .profile__sign-out {
+        font-size: 12px;
+        line-height: 15px;
+        max-width: 300px;
+        margin-bottom: 40px;
+    }
+
+
+
+}
