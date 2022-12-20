@@ -20,8 +20,13 @@
     margin-top: 22px;
 }
 
+.moviescardlist__btn:hover {
+    transition: .3s;
+    box-shadow: 0px 0px 19px 0px rgba(255, 255, 255, 0.37);
+}
+
 .moviescardlist__btn_inactive {
-   visibility: hidden;
+    visibility: hidden;
 }
 
 

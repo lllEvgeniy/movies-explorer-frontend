@@ -18,6 +18,10 @@
     height: 38px;
 }
 
+.header__img:hover {
+    scale: 1.1;
+}
+
 @media screen and (max-width: 1279px) {
     .header__wrapper {
         width: 92vw;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './Register.css';
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 import { Link } from 'react-router-dom';
 
 

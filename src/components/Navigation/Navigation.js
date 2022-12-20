@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Navigation.css';
-import account from "../../images/account.png";
+import account from "../../images/account.svg";
 import { Link } from "react-router-dom";
 
 

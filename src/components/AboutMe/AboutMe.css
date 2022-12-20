@@ -57,6 +57,11 @@
     margin: 0 0 101px 0;
 }
 
+.about-me__github:hover {
+    transition: .3s;
+    color: rgb(138, 138, 138);
+}
+
 .about-me__photo {
     grid-area: 2 / 2 / 6 / 3;
     width: 270px;

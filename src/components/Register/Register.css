@@ -16,6 +16,21 @@
     height: 38px;
 }
 
+.register__img:hover {
+    scale: 1.1;
+}
+
+.register__btn:hover {
+    transition: .3s;
+    scale: 1.01;
+    background-color: #5d98f7;
+}
+
+.register__signin:hover {
+    transition: .3s;
+    color: #8ab4f8;
+}
+
 .register__title {
     font-weight: 500;
     font-size: 24px;
@@ -42,7 +57,7 @@
     background-color: #2F2F2F;
     border: none;
     padding: 0;
-    outline: none;
+
     margin: 10px 0 20px 0;
     font-size: 13px;
     line-height: 16px;
@@ -55,7 +70,6 @@
     background-color: #2F2F2F;
     border: none;
     padding: 0;
-    outline: none;
     margin: 10px 0 20px 0;
     font-size: 13px;
     line-height: 16px;
@@ -68,7 +82,6 @@
     background-color: #2F2F2F;
     border: none;
     padding: 0;
-    outline: none;
     margin: 10px 0 0 0;
     font-size: 13px;
     line-height: 16px;

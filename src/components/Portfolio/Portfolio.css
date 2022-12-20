@@ -29,8 +29,13 @@
     display: flex;
     text-decoration: none;
     justify-content: space-between;
-
     margin: 20px 0 0 0;
+}
+
+.portfolio__link:hover {
+    transition: .3s;
+    color: rgb(138, 138, 138);
+
 }
 
 .portfolio__list {

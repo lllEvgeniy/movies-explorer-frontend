@@ -14,17 +14,17 @@ function MoviesCard({ movie }) {
 
     return (
         <div className='moviescard'>
-            <div className="moviecard__information">
-                <h2 className="moviecard__title">{movie.title}</h2>
-                <p className="movie-card__duration">{movie.duration}</p>
+            <div className="moviescard__information">
+                <h2 className="moviescard__title">{movie.title}</h2>
+                <p className="moviescard__duration">{movie.duration}</p>
                 {location.pathname === '/movies' ?
-                    <button className={`moviecard__save ${saveMovie ? 'moviecard__save_active' : ''}`} type='button' onClick={handleSaveMovie} />
+                    <button className={`moviescard__save ${saveMovie ? 'moviescard__save_active' : ''}`} type='button' onClick={handleSaveMovie} />
                     :
-                    <button className='moviecard__remove' type='button' />
+                    <button className='moviescard__remove' type='button' />
                 }
 
             </div>
-            <img className="moviecard__img" src={movie.image} alt={movie.title} />
+            <img className="moviescard__img" src={movie.image} alt={movie.title} />
         </div>
     )
 }

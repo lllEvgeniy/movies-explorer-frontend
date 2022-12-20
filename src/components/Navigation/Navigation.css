@@ -52,40 +52,6 @@
     transform: rotate(45deg) translate(12.93px, 6.93px);
 }
 
-
-/* div  {
-
-} */
-
-
-/* .navigation__burger {
-    background: currentcolor;
-    height: 3px;
-    left: 8px;
-    position: absolute;
-    width: 32px;
-    top: 10px;
-    transition: all 0.4s cubic-bezier(0, 0, 0, 1) 0s;
-    transform: none;
-} */
-
-/* div .navigation__burger_active::after {
-    transform: scaleX(0);
-
-} */
-
-/* .navigation__burger::after {
-    content: '';
-    background: currentcolor;
-    height: 3px;
-    left: 0;
-    position: absolute;
-    width: 32px;
-    top: 24px;
-    transition: all 0.4s cubic-bezier(0, 0, 0, 1) 0s;
-    transform: none;
-} */
-
 .navigation__btn {
     display: flex;
     align-items: center;
@@ -104,9 +70,16 @@
     margin-right: 30px;
     line-height: 16px;
     text-decoration: none;
+    transition: 1s;
+}
+
+.navigation__signup:hover {
+    transition: .3;
+    color: #3d8f37;
 }
 
 .navigation__signin {
+    color: #000;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
@@ -120,6 +93,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+.navigation__signin:hover {
+    transition: .3s;
+    color: #3d8f37;
 }
 
 .navigation__link {
@@ -144,11 +123,21 @@
     color: #fff;
 }
 
+.navigation__films:hover {
+    transition: .3s;
+    color: rgb(175, 175, 175);
+}
+
 .navigation__saved-films {
     font-size: 13px;
     line-height: 18px;
     text-decoration: none;
     color: #fff;
+}
+
+.navigation__saved-films:hover {
+    transition: .3s;
+    color: rgb(175, 175, 175);
 }
 
 .navigation__account {
@@ -165,8 +154,13 @@
     align-items: center;
     text-decoration: none;
     justify-content: space-evenly;
-
 }
+
+.navigation__account:hover {
+    transition: .3s;
+    background-color: rgb(83, 83, 83);
+}
+
 
 .navigation__burgerbtn {
     display: none;

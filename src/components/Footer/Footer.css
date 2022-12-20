@@ -41,6 +41,11 @@
     margin-right: 20px;
 }
 
+.footer__link:hover {
+    transition: .3s;
+    color: rgb(138, 138, 138);
+}
+
 @media screen and (max-width: 1279px) {
     .footer__wrapper {
         max-width: 91vw;
