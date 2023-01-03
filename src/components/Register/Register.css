@@ -23,7 +23,6 @@
 .register__btn:hover {
     transition: .3s;
     scale: 1.01;
-    background-color: #5d98f7;
 }
 
 .register__signin:hover {
@@ -75,6 +74,21 @@
     line-height: 16px;
 }
 
+.register__input-error {
+    color: #CD5C5C;
+    font-size: 10px;
+    line-height: 12px;
+    margin: 0;
+}
+
+.register__btn-error {
+    color: #CD5C5C;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 0;
+    text-align: center;
+}
+
 .register__password {
     width: 396px;
     height: 46px;
@@ -90,7 +104,7 @@
 .register__btn {
     width: 396px;
     height: 45px;
-    background-color: #4285F4;
+    background-color: #8B8B8B;
     color: #fff;
     font-weight: 500;
     font-size: 14px;
@@ -99,6 +113,10 @@
     border-radius: 3px;
     border: none;
     margin: 69px 0 16px 0;
+}
+
+.register__btn_active {
+    background-color: #5d98f7;
 }
 
 .register__error {

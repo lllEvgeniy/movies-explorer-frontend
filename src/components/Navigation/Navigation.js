@@ -15,7 +15,6 @@ function Navigation(props) {
         } else { setOpenBurger(false) }
     }
 
-
     if (!props.loggedIn) {
         return <div className='navigation'>
             <div className='navigation__btn'>
