@@ -30,16 +30,21 @@ function App() {
   const [dataSave, setDataSave] = useState(false);
 
   useEffect(() => {
+
     if (JSON.parse(localStorage.getItem('checkbox')) !== null) {
       setChecked(JSON.parse(localStorage.getItem('checkbox')))
     } if (localStorage.getItem('requestText') !== null) {
       setRequestText(localStorage.getItem('requestText'))
     }
-    getDataUser()
+      getDataUser()
   }, [])
 
 
   useEffect(() => {
+    console.log(currentUser)
+    if (currentUser !== '') {
+      navigate(location.pathname)
+    }
     reRender()
   }, [location.pathname]);
 
@@ -159,7 +164,6 @@ function App() {
           localStorage.setItem('jwt', response.token);
           handLeloggedIn()
           getDataUser()
-          navigate("/movies")
         } else {
           setLoginError('Что-то пошло не так!')
         }
@@ -173,7 +177,7 @@ function App() {
         if (res.data._id) {
           setCurrentUser(res.data)
           handLeloggedIn()
-          navigate("/movies")
+          navigate(location.pathname)
         }
       })
       .catch(err => console.log(err))
