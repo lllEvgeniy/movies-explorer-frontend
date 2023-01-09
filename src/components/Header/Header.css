@@ -1,0 +1,30 @@
+.header {
+    height: 74px;
+    background-color: rgba(7, 48, 66, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__wrapper {
+
+    max-width: 1140px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__img {
+    width: 38px;
+    height: 38px;
+}
+
+.header__img:hover {
+    scale: 1.1;
+}
+
+@media screen and (max-width: 1279px) {
+    .header__wrapper {
+        width: 92vw;
+    }
+}
+
