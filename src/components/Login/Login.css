@@ -63,6 +63,7 @@
     margin: 10px 0 20px 0;
     font-size: 13px;
     line-height: 16px;
+    color: #fff;
 }
 
 .login__password {
@@ -75,6 +76,7 @@
     margin: 10px 0 0 0;
     font-size: 13px;
     line-height: 16px;
+    color: #fff;
 }
 
 .login__btn {

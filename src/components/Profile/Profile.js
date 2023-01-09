@@ -17,79 +17,114 @@ function Profile(props) {
     const [emailError, setEmailError] = useState('Email не может быть пустым');
     const [nameError, setNameError] = useState('Name не может быть пустым');
     const [formValid, setFormValid] = useState(true)
+    const [btnUpdate, setBtnUpdate] = useState(false)
+
 
     useEffect(() => {
-        if (emailError || nameError) {
+        if (nameError.length > 0) {
             setFormValid(false)
         } else {
             setFormValid(true)
         }
-    }, [emailError, nameError])
 
-const emailHandler = (e) => {
-    setEmail(e.target.value)
-    const re = /^\S+@\S+\.\S+$/
-    if (!re.test(String(e.target.value).toLowerCase())) {
-        setEmailError('Некорhектное поле email')
-    } else {
-        setEmailError('')
+
+    }, [name])
+
+    useEffect(() => {
+        if (emailError.length > 0) {
+            setFormValid(false)
+        } else {
+            setFormValid(true)
+        }
+
+
+    }, [email])
+
+
+
+    const emailHandler = (e) => {
+        setEmail(e.target.value)
+        props.setDataSave(false)
+        setBtnUpdate(true)
+        const re = /^\S+@\S+\.\S+$/
+        if (!re.test(String(e.target.value).toLowerCase())) {
+            setEmailError('Некорhектное поле email')
+        } else {
+            setEmailError('')
+        }
+        if (e.target.value === currentUser.email && name === currentUser.name) {
+            setBtnUpdate(false)
+        }
     }
-}
 
-const nameHandler = (e) => {
-    setName(e.target.value)
-    const re = /^[-а-яА-ЯёЁa-zA-Z\s]+$/
-    if (!re.test(String(e.target.value).toLowerCase())) {
-        setNameError('Некорhектное поле name')
-    } else {
-        setNameError('')
+    const nameHandler = (e) => {
+        setName(e.target.value)
+        props.setDataSave(false)
+        setBtnUpdate(true)
+        const re = /^[-а-яА-ЯёЁa-zA-Z\s]+$/
+        if (!re.test(String(e.target.value).toLowerCase())) {
+            setNameError('Некорhектное поле name')
+        } else {
+            setNameError('')
+        }
+        if (e.target.value === currentUser.name && email === currentUser.email) {
+            setBtnUpdate(false)
+        }
     }
-}
 
-const blurHandler = (e) => {
-    switch (e.target.name) {
-        case 'email':
-            setEmailDirty(true)
-            break;
-        case 'password':
-            setNameDirty(true)
-            break;
-        default:
+    const blurHandler = (e) => {
+        switch (e.target.name) {
+            case 'email':
+                setEmailDirty(true)
+                break;
+            case 'name':
+                setNameDirty(true)
+                break;
+            default:
+        }
     }
-}
 
 
-function updateUser(e) {
-    e.preventDefault();
-    props.handleUpdateUser(name, email)
-}
+    function updateUser(e) {
+        e.preventDefault();
+        setBtnUpdate(false)
+        props.handleUpdateUser(name, email)
+    }
 
-function signOut() {
-    localStorage.removeItem('jwt');
-    props.handLeloggedIn()
-  }
+    function signOut() {
+        localStorage.removeItem('requestText');
+        localStorage.removeItem('checkbox');
+        localStorage.removeItem('savedMovies');
+        localStorage.removeItem('searchMovies');
+        localStorage.removeItem('movies');
+        localStorage.removeItem('jwt');
+        props.handLeloggedIn()
+    }
 
-return (
-    <div className='profile'>
-        <Header>
-            < Navigation loggedIn={props.loggedIn} />
-        </Header>
-        <h2 className='profile__title'>Привет, Виталий!</h2>
-        <div className='profile__name'>
-            <p className='profile__change'>Имя</p>
-            {(nameDirty && nameError) && <span className='register__input-error'>{nameError}</span>}
-            <input onBlur={e => blurHandler(e)} onChange={e => nameHandler(e)} type="text" value={name || ""} className='profile__change-name' />
+    return (
+        <div className='profile'>
+            <Header>
+                < Navigation loggedIn={props.loggedIn} />
+            </Header>
+            <div className="profile__wrapper">
+                <h2 className='profile__title'>Привет, {name}</h2>
+                <div className='profile__name'>
+                    <p className='profile__change'>Имя</p>
+                    {(nameDirty && nameError) && <span className='register__input-error'>{nameError}</span>}
+                    <input onBlur={e => blurHandler(e)} onChange={e => nameHandler(e)} name='name' type="text" value={name || ""} className='profile__change-name' />
 
+                </div>
+                <div className='profile__email'>
+                    <p className='profile__change'>E-mail</p>
+                    {(emailDirty && emailError) && <span className='register__input-error'>{emailError}</span>}
+                    <input name="email" onBlur={e => blurHandler(e)} onChange={e => emailHandler(e)} type="text" value={email || ""} className='profile__change-email' />
+                </div>
+                <button onClick={updateUser} disabled={!formValid || !btnUpdate} className={`profile__edit ${formValid && btnUpdate && 'profile__edit_active'}`}>Редактировать</button>
+                {(props.dataSave) && <span className='register__saved-data'>Данные успешно сохранены!</span>}
+                <Link to='/' onClick={signOut} className='profile__sign-out'>Выйти из аккаунта</Link>
+            </div>
         </div>
-        <div className='profile__email'>
-            <p className='profile__change'>E-mail</p>
-            {(emailDirty && emailError) && <span className='register__input-error'>{emailError}</span>}
-            <input onBlur={e => blurHandler(e)} onChange={e => emailHandler(e)} type="text" value={email || ""} className='profile__change-email' />
-        </div>
-        <button onClick={updateUser} disabled={!formValid} className={`profile__edit ${formValid && 'profile__edit_active'}`}>Редактировать</button>
-        <Link to='/' onClick={signOut} className='profile__sign-out'>Выйти из аккаунта</Link>
-    </div>
-);
+    );
 }
 
 export default Profile;

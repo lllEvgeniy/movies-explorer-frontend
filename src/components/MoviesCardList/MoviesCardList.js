@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 
 function MoviesCardList(props) {
     const location = useLocation();
-    // location.pathname === '/movies' ? movies : )
     const [countCardsRender, setCountCardsRender] = useState(7)
     const [countClickRender, setCountClickRender] = useState(7)
 

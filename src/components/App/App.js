@@ -27,9 +27,7 @@ function App() {
   const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState('');
   const [checked, setChecked] = useState(false);
-
-
-
+  const [dataSave, setDataSave] = useState(false);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('checkbox')) !== null) {
@@ -50,10 +48,12 @@ function App() {
   }, [updateList]);
 
   const requestTextHandler = (e) => {
+
     setRequestText(e.target.value)
     if (e.target.value) {
       setRequestTextError('')
     }
+
   }
 
   function reRender() {
@@ -61,14 +61,18 @@ function App() {
       mainApi.getInfoMovies(localStorage.getItem('jwt'))
         .then((res) => {
           localStorage.setItem('savedMovies', JSON.stringify(res))
+          setMovies(JSON.parse((localStorage.getItem('savedMovies'))) || [])
         })
         .catch((err) => {
           setMessageFound('Во время запроса произошла ошибка')
           console.log(err);
         })
-      setMovies(JSON.parse((localStorage.getItem('savedMovies'))) || [])
+      setRequestText('')
+      setChecked(false)
     } if (location.pathname === '/movies') {
       setMovies(JSON.parse((localStorage.getItem('searchMovies'))) || [])
+      setRequestText((localStorage.getItem('requestText')) || [])
+      setChecked(JSON.parse((localStorage.getItem('checkbox'))))
     }
   }
 
@@ -82,10 +86,10 @@ function App() {
     JSON.parse(localStorage.getItem('movies')).forEach(item => {
       item.nameRU.toLowerCase().search(requestText.toLowerCase()) !== -1 && newMass.push(item)
     })
-    if( localStorage.getItem('checkbox') === 'true') {
+    if (localStorage.getItem('checkbox') === 'true') {
       newMass = newMass.filter((item) => {
-        return  item.duration <= 40
-       })
+        return item.duration <= 40
+      })
     }
     localStorage.setItem('searchMovies', JSON.stringify(newMass));
     newMass.length === 0 && setMessageFound('Ничего не найдено');
@@ -98,8 +102,10 @@ function App() {
     if (requestText === '') {
       setRequestTextError('Нужно ввести ключевое слово')
     } else {
-      localStorage.setItem('requestText', requestText)
-      if (localStorage.getItem('movies') !== null) {
+      if (location.pathname === '/movies') {
+        localStorage.setItem('requestText', requestText)
+      }
+      if (localStorage.getItem('movies') !== null && location) {
         processingData(requestText)
       } else {
         getData(requestText)
@@ -121,10 +127,10 @@ function App() {
     JSON.parse(localStorage.getItem('savedMovies')).forEach(item => {
       item.nameRU.toLowerCase().search(requestText.toLowerCase()) !== -1 && newMass.push(item)
     })
-    if( localStorage.getItem('checkbox') === 'true') {
+    if (localStorage.getItem('checkbox') === 'true') {
       newMass = newMass.filter((item) => {
-        return  item.duration <= 40
-       })
+        return item.duration <= 40
+      })
     }
     setMovies(newMass)
     newMass.length === 0 && setMessageFound('Ничего не найдено');
@@ -135,7 +141,6 @@ function App() {
     setPreloaderActive(true)
     getContent()
       .then((data) => {
-        console.log(data)
         processingData(requestText, data)
       })
       .catch((err) => {
@@ -176,7 +181,12 @@ function App() {
 
   function handleUpdateUser(name, email) {
     mainApi.editProfile(name, email, localStorage.getItem('jwt'))
-      .then(res => setCurrentUser(res.data))
+      .then((res) =>  {
+        setCurrentUser(res.data)
+        setDataSave(true)
+
+      })
+
       .catch(err => console.log(err))
   }
 
@@ -230,7 +240,9 @@ function App() {
 
   function handleChangeCheckbox() {
     setChecked(!checked)
-    localStorage.setItem('checkbox', !checked)
+    if (location.pathname === '/movies') {
+      localStorage.setItem('checkbox', !checked)
+    }
   }
 
   return (
@@ -239,8 +251,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Main loggedIn={loggedIn} />} />
           <Route path="/movies" element={<ProtectedRoute loggedIn={loggedIn} component={<Movies checked={checked} handleChange={handleChangeCheckbox} handleDeleteMovie={handleDeleteMovie} handleSaveMovie={handleSaveMovie} messageFound={messageFound} requestTextError={requestTextError} requestText={requestText} requestTextHandler={requestTextHandler} movies={movies} preloaderActive={preloaderActive} requestFormSubmit={requestFormSubmit} loggedIn={loggedIn} />}></ProtectedRoute>} />
-          <Route path="/saved-movies" element={<ProtectedRoute loggedIn={loggedIn} component={<SavedMovies checked={checked} handleChange={handleChangeCheckbox} movies={movies} handleDeleteMovie={handleDeleteMovie} requestText={requestText} requestTextHandler={requestTextHandler} requestTextError={requestTextError} messageFound={messageFound} loggedIn={loggedIn} requestFormSubmit={savedMoviesSearch} />}></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute handLeloggedIn={handLeloggedIn} loggedIn={loggedIn} component={<Profile handleUpdateUser={handleUpdateUser} loggedIn={loggedIn} />}></ProtectedRoute>} />
+          <Route path="/saved-movies" element={<ProtectedRoute loggedIn={loggedIn} component={<SavedMovies requestText={requestText} requestTextHandler={requestTextHandler} checked={checked} handleChange={handleChangeCheckbox} movies={movies} handleDeleteMovie={handleDeleteMovie} requestTextError={requestTextError} messageFound={messageFound} loggedIn={loggedIn} requestFormSubmit={savedMoviesSearch} />}></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute handLeloggedIn={handLeloggedIn} loggedIn={loggedIn} component={<Profile handleUpdateUser={handleUpdateUser} loggedIn={loggedIn} dataSave={dataSave} setDataSave={setDataSave} />}></ProtectedRoute>} />
           <Route path="/signup" element={<Register registerError={registerError} handleSubmit={handleSubmitSignup} />} />
           <Route path="/signin" element={<Login loginError={loginError} handleSubmit={handleSubmitSignin} />} />
           <Route path="*" element={<PageNotFound />} />
