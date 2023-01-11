@@ -42,8 +42,8 @@ function MoviesCard({ movie, handleSaveMovie, handleDeleteMovie }) {
                     <button onClick={handleDelMovie} className='moviescard__remove' type='button' />
                 }
             </div>
-            <img className="moviescard__img" src={`${location.pathname === '/movies' ? `https://api.nomoreparties.co${movie.image.url}` : movie.image}`
-            } alt={movie.nameRU} />
+           <a className='movie__trailer-link' href={movie.trailerLink}> <img className="moviescard__img" src={`${location.pathname === '/movies' ? `https://api.nomoreparties.co${movie.image.url}` : movie.image}`
+            } alt={movie.nameRU} /></a>
         </div>
     )
 }

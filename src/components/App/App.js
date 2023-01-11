@@ -36,15 +36,22 @@ function App() {
     } if (localStorage.getItem('requestText') !== null) {
       setRequestText(localStorage.getItem('requestText'))
     }
-      getDataUser()
+    mainApi.getInfo(localStorage.getItem('jwt'))
+    .then((res) => {
+      if (res.data._id) {
+        setCurrentUser(res.data)
+        handLeloggedIn()
+        if (location.pathname === "/signin" || location.pathname === "/signup") {
+          navigate("/")
+        } else {
+          navigate(location.pathname)
+        }
+      }
+    })
+    .catch(err => console.log(err))
   }, [])
 
-
   useEffect(() => {
-    console.log(currentUser)
-    if (currentUser !== '') {
-      navigate(location.pathname)
-    }
     reRender()
   }, [location.pathname]);
 
@@ -120,6 +127,7 @@ function App() {
 
   function savedMoviesSearch(e) {
     e.preventDefault();
+    setMessageFound('')
     if (requestText === '') {
       setRequestTextError('Нужно ввести ключевое слово')
     } else {
@@ -132,7 +140,7 @@ function App() {
     JSON.parse(localStorage.getItem('savedMovies')).forEach(item => {
       item.nameRU.toLowerCase().search(requestText.toLowerCase()) !== -1 && newMass.push(item)
     })
-    if (localStorage.getItem('checkbox') === 'true') {
+    if (checked) {
       newMass = newMass.filter((item) => {
         return item.duration <= 40
       })
@@ -140,7 +148,6 @@ function App() {
     setMovies(newMass)
     newMass.length === 0 && setMessageFound('Ничего не найдено');
   }
-
 
   function getData(requestText) {
     setPreloaderActive(true)
@@ -164,6 +171,7 @@ function App() {
           localStorage.setItem('jwt', response.token);
           handLeloggedIn()
           getDataUser()
+          navigate("/movies")
         } else {
           setLoginError('Что-то пошло не так!')
         }
@@ -177,7 +185,6 @@ function App() {
         if (res.data._id) {
           setCurrentUser(res.data)
           handLeloggedIn()
-          navigate(location.pathname)
         }
       })
       .catch(err => console.log(err))
@@ -185,7 +192,7 @@ function App() {
 
   function handleUpdateUser(name, email) {
     mainApi.editProfile(name, email, localStorage.getItem('jwt'))
-      .then((res) =>  {
+      .then((res) => {
         setCurrentUser(res.data)
         setDataSave(true)
 
@@ -193,8 +200,6 @@ function App() {
 
       .catch(err => console.log(err))
   }
-
-
 
   function handleSubmitSignup({ email, password, name }) {
     mainApi.signup(password, email, name)
@@ -218,7 +223,6 @@ function App() {
       .catch((errorMessage) => {
         console.log(errorMessage);
       });
-
   }
 
   const handleDeleteMovie = (movie) => {

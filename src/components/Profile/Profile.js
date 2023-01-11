@@ -19,15 +19,12 @@ function Profile(props) {
     const [formValid, setFormValid] = useState(true)
     const [btnUpdate, setBtnUpdate] = useState(false)
 
-
     useEffect(() => {
         if (nameError.length > 0) {
             setFormValid(false)
         } else {
             setFormValid(true)
         }
-
-
     }, [name])
 
     useEffect(() => {
@@ -36,8 +33,6 @@ function Profile(props) {
         } else {
             setFormValid(true)
         }
-
-
     }, [email])
 
 
