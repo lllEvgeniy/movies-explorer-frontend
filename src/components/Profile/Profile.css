@@ -1,6 +1,15 @@
 .profile {
     background-color: #202020;
     width: 1280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
 }
 
 .profile__title {
@@ -64,8 +73,15 @@
     font-size: 13px;
     line-height: 16px;
     text-align: center;
-    margin: 220px 0 17px 0;
+    margin: 220px auto 17px auto;
     cursor: pointer;
+    color: #424242;
+    border: none;
+    background-color: #202020
+}
+
+.profile__edit_active {
+    color: #fff;
 }
 
 .profile__sign-out {
@@ -81,7 +97,17 @@
     justify-content: center;
 }
 
+.register__saved-data {
+    text-align: center;
+    font-size: 10px;
+    line-height: 12px;
+}
+
 @media screen and (max-width: 769px) {
+
+    .profile__wrapper {
+        margin-top: 0;
+    }
 
 
     .profile__title {

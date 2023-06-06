@@ -1,5 +1,7 @@
 ### Project Movies-explorer-frontend
 ### figma https://disk.yandex.ru/d/XYQ3gTToZ1zMFg
+### pull request level-3 https://github.com/lllEvgeniy/movies-explorer-frontend/pull/2
+### web https://movies-exploreor-front.nomoredomains.club/
 
 
 # Getting Started with Create React App

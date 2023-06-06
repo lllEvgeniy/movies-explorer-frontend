@@ -20,7 +20,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 60cqw;
+}
 
+.movie__trailer-link {
+    display: flex;
+    align-items: center;
 }
 
 .moviescard__duration {

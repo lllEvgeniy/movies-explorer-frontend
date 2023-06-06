@@ -5,6 +5,14 @@
     border-top: 1px solid #424242;
 }
 
+.moviescardlist_span {
+    display: none;
+}
+
+.moviescardlist_span_active {
+    display: block;
+}
+
 .moviescardlist__btn {
     width: 1140px;
     height: 36px;
